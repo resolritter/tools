@@ -1,0 +1,26 @@
+{
+  "actions": ["AddTodo", "EditTodo", "DeleteTodo", "LoadServerTodos"],
+  "actionToPayload": {
+    "AddTodo": "{ text: IEditableTodo['text'], completed: IEditableTodo['completed'], }",
+    "EditTodo": "{ text: IEditableTodo['text'], newContents: IEditableTodo, }",
+    "DeleteTodo": "IEditableTodo['text']",
+    "LoadServerTodos": "ITodo[]"
+  },
+  "actionToServerResponseData": {
+    "AddTodo": "ITodo[]",
+    "EditTodo": "ITodo",
+    "DeleteTodo": "ITodo",
+    "LoadServerTodos": "ITodo[]"
+  },
+  "extraImports": [
+    "import { IEditableTodo } from \"src/Types\"",
+    "import { ITodo } from \"src/SharedTypes\""
+  ],
+  "withDerivedActionCreators": [
+    {
+      "generateForVariants": ["Start"],
+      "mapperTypeImportName": "ActionToActionCreator",
+      "mapperTypeImportLine": "import { ActionToActionCreator } from \"./TodoModule\""
+    }
+  ]
+}

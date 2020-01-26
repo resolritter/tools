@@ -1,0 +1,811 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Redux code generator should match the snapshot with metadata 1`] = `
+"/*
+  You'll likely want those at the top of the file:
+
+  import { 
+    RequestAction,
+    ServerRequestActionT,
+    BaseSuccessServerResponseAction,
+    BaseErrorServerResponseAction,
+    ServerResponseAction,
+    RequestT,
+    Actions,
+    
+      BuyActionWithMetadata,
+      SellActionWithMetadata,
+      ReturnActionWithMetadata,
+    
+      PayloadBuy,
+      PayloadSell,
+      PayloadReturn,
+   } from \\"\\"
+
+  export { 
+    RequestAction,
+    ServerRequestActionT,
+    BaseSuccessServerResponseAction,
+    BaseErrorServerResponseAction,
+    ServerResponseAction,
+    RequestT,
+    Actions,
+    
+      BuyActionWithMetadata,
+      SellActionWithMetadata,
+      ReturnActionWithMetadata,
+    
+      PayloadBuy,
+      PayloadSell,
+      PayloadReturn,
+   }
+  */
+
+import { Action } from \\"redux\\";
+import { IProduct } from \\"src/Types\\";
+
+import { ActionToActionCreator } from \\"./modules/Market\\";
+
+interface ServerResponseWith<T> extends Response {
+  data: T;
+}
+interface WithMetadata<T> {
+  meta: T;
+}
+
+interface ResponseMetadata<T> {
+  meta: {
+    requestAction: {
+      contents: WithMetadata<T>;
+    };
+  };
+}
+
+export enum Actions {
+  \\"BUY\\" = \\"BUY\\",
+  \\"SELL\\" = \\"SELL\\",
+  \\"RETURN\\" = \\"RETURN\\"
+}
+
+export type PayloadBuy = {
+  id: IProduct[\\"id\\"];
+  discount: IProduct[\\"discount\\"];
+  date: IProduct[\\"date\\"];
+}[];
+export interface BuyActionWithMetadata<MetadataType>
+  extends Action,
+    WithMetadata<MetadataType> {
+  type: Actions.BUY;
+  payload: PayloadBuy;
+}
+export type ResponseDataBuy = IProduct[];
+
+export type IsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY\\"
+  : never;
+
+export type IsPayloadBuy<A extends Actions> = A extends Actions.BUY
+  ? PayloadBuy
+  : never;
+
+export type IsResponseDataBuy<A extends Actions> = A extends Actions.BUY
+  ? ResponseDataBuy
+  : never;
+
+export type IsStartBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"START_BUY\\"
+  : never;
+
+export type IsDoneBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"DONE_BUY\\"
+  : never;
+
+export type IsErrorBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"ERROR_BUY\\"
+  : never;
+
+export type PayloadSell = {
+  id: IProduct[\\"id\\"];
+  discount: IProduct[\\"discount\\"];
+  date: IProduct[\\"date\\"];
+}[];
+export interface SellActionWithMetadata<MetadataType>
+  extends Action,
+    WithMetadata<MetadataType> {
+  type: Actions.SELL;
+  payload: PayloadSell;
+}
+export type ResponseDataSell = IProduct[];
+
+export type IsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL\\"
+  : never;
+
+export type IsPayloadSell<A extends Actions> = A extends Actions.SELL
+  ? PayloadSell
+  : never;
+
+export type IsResponseDataSell<A extends Actions> = A extends Actions.SELL
+  ? ResponseDataSell
+  : never;
+
+export type IsStartSell<A extends Actions> = A extends Actions.SELL
+  ? \\"START_SELL\\"
+  : never;
+
+export type IsDoneSell<A extends Actions> = A extends Actions.SELL
+  ? \\"DONE_SELL\\"
+  : never;
+
+export type IsErrorSell<A extends Actions> = A extends Actions.SELL
+  ? \\"ERROR_SELL\\"
+  : never;
+
+export type PayloadReturn = {
+  id: IProduct[\\"id\\"];
+  discount: IProduct[\\"discount\\"];
+  date: IProduct[\\"date\\"];
+}[];
+export interface ReturnActionWithMetadata<MetadataType>
+  extends Action,
+    WithMetadata<MetadataType> {
+  type: Actions.RETURN;
+  payload: PayloadReturn;
+}
+export type ResponseDataReturn = IProduct[];
+
+export type IsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN\\"
+  : never;
+
+export type IsPayloadReturn<A extends Actions> = A extends Actions.RETURN
+  ? PayloadReturn
+  : never;
+
+export type IsResponseDataReturn<A extends Actions> = A extends Actions.RETURN
+  ? ResponseDataReturn
+  : never;
+
+export type IsStartReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"START_RETURN\\"
+  : never;
+
+export type IsDoneReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"DONE_RETURN\\"
+  : never;
+
+export type IsErrorReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"ERROR_RETURN\\"
+  : never;
+
+export type RequestT<A extends Actions> =
+  | IsRequestBuy<A>
+  | IsRequestSell<A>
+  | IsRequestReturn<A>;
+
+export type PayloadT<A extends Actions> =
+  | IsPayloadBuy<A>
+  | IsPayloadSell<A>
+  | IsPayloadReturn<A>;
+
+export type ResponseDataT<A extends Actions> =
+  | IsResponseDataBuy<A>
+  | IsResponseDataSell<A>
+  | IsResponseDataReturn<A>;
+
+export type StartT<A extends Actions> =
+  | IsStartBuy<A>
+  | IsStartSell<A>
+  | IsStartReturn<A>;
+
+export type DoneT<A extends Actions> =
+  | IsDoneBuy<A>
+  | IsDoneSell<A>
+  | IsDoneReturn<A>;
+
+export type ErrorT<A extends Actions> =
+  | IsErrorBuy<A>
+  | IsErrorSell<A>
+  | IsErrorReturn<A>;
+
+/*
+  The stringified actionModifiers are those whose \\"type\\" is used at runtime, and
+  mapped through a concrete object.  This is where e.g.
+  RequestAction[Actions.LoadShoppingCart] is enabled, because RequestAction has
+  to be hashable and concrete.
+  */
+
+export const RequestAction: {
+  [A in Actions]: RequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY\\",
+
+  SELL: \\"REQUEST_SELL\\",
+
+  RETURN: \\"REQUEST_RETURN\\"
+};
+
+export const StartAction: {
+  [A in Actions]: StartT<A>;
+} = {
+  BUY: \\"START_BUY\\",
+
+  SELL: \\"START_SELL\\",
+
+  RETURN: \\"START_RETURN\\"
+};
+
+export const DoneAction: {
+  [A in Actions]: DoneT<A>;
+} = {
+  BUY: \\"DONE_BUY\\",
+
+  SELL: \\"DONE_SELL\\",
+
+  RETURN: \\"DONE_RETURN\\"
+};
+
+export const ErrorAction: {
+  [A in Actions]: ErrorT<A>;
+} = {
+  BUY: \\"ERROR_BUY\\",
+
+  SELL: \\"ERROR_SELL\\",
+
+  RETURN: \\"ERROR_RETURN\\"
+};
+
+export type SuccessIsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY_SUCCESS\\"
+  : never;
+
+export type SuccessIsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL_SUCCESS\\"
+  : never;
+
+export type SuccessIsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN_SUCCESS\\"
+  : never;
+
+export type SuccessRequestT<A extends Actions> =
+  | SuccessIsRequestBuy<A>
+  | SuccessIsRequestSell<A>
+  | SuccessIsRequestReturn<A>;
+
+export const SuccessRequestAction: {
+  [A in Actions]: SuccessRequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY_SUCCESS\\",
+
+  SELL: \\"REQUEST_SELL_SUCCESS\\",
+
+  RETURN: \\"REQUEST_RETURN_SUCCESS\\"
+};
+
+export type ErrorIsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY_ERROR\\"
+  : never;
+
+export type ErrorIsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL_ERROR\\"
+  : never;
+
+export type ErrorIsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN_ERROR\\"
+  : never;
+
+export type ErrorRequestT<A extends Actions> =
+  | ErrorIsRequestBuy<A>
+  | ErrorIsRequestSell<A>
+  | ErrorIsRequestReturn<A>;
+
+export const ErrorRequestAction: {
+  [A in Actions]: ErrorRequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY_ERROR\\",
+
+  SELL: \\"REQUEST_SELL_ERROR\\",
+
+  RETURN: \\"REQUEST_RETURN_ERROR\\"
+};
+
+export type AbortIsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY_ABORT\\"
+  : never;
+
+export type AbortIsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL_ABORT\\"
+  : never;
+
+export type AbortIsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN_ABORT\\"
+  : never;
+
+export type AbortRequestT<A extends Actions> =
+  | AbortIsRequestBuy<A>
+  | AbortIsRequestSell<A>
+  | AbortIsRequestReturn<A>;
+
+export const AbortRequestAction: {
+  [A in Actions]: AbortRequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY_ABORT\\",
+
+  SELL: \\"REQUEST_SELL_ABORT\\",
+
+  RETURN: \\"REQUEST_RETURN_ABORT\\"
+};
+
+/*
+    Request types
+    Actions containing the server request's body.
+  */
+
+export type ServerRequestActionT<A extends Actions> = {
+  type: RequestT<A>;
+  request: RequestInit & { url: string };
+  contents: PayloadT<A>;
+};
+
+/*
+    Response Types
+    Action containing the API response, within its body, after a server request is completed.
+  */
+
+type ConcreteServerResponseAction<A extends Actions> = {
+  type: string;
+  response: ServerResponseWith<ResponseDataT<A>>;
+};
+
+export interface BaseSuccessServerResponseAction<
+  A extends Actions,
+  MetadataType
+> extends ConcreteServerResponseAction<A>, ResponseMetadata<MetadataType> {}
+
+export interface BaseErrorServerResponseAction<MetadataType>
+  extends Action,
+    ResponseMetadata<MetadataType> {
+  type: string;
+  error: Response | Error;
+}
+
+export type ServerResponseAction<A extends Actions, MetadataType> =
+  | BaseSuccessServerResponseAction<A, MetadataType>
+  | BaseErrorServerResponseAction<MetadataType>;
+
+/*
+    Action Creators Generation for specific actionModifiers
+  */
+
+type toStartActionCreatorReturn = {
+  [A in Actions]: (
+    ...args: Parameters<ActionToActionCreator<A>>
+  ) => ReturnType<ActionToActionCreator<A>>;
+};
+
+function toStartActionCreator(
+  mapKeys: {
+    [A in Actions]: StartT<A>;
+  }
+): (
+  actionCreator: { [A in Actions]: ActionToActionCreator<A> }
+) => toStartActionCreatorReturn {
+  return function(
+    actionCreator: { [A in Actions]: ActionToActionCreator<A> }
+  ): toStartActionCreatorReturn {
+    const wrappedActionCreator = {} as any;
+    for (const [key, creatorFn] of Object.entries(actionCreator)) {
+      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+      wrappedActionCreator[key] = function(...args: any[]) {
+        return {
+          type: mapKeys[key as Actions],
+          payload: (creatorFn as any)(...args)
+        };
+      };
+    }
+    return wrappedActionCreator as toStartActionCreatorReturn;
+  };
+}
+export const GenerateStartActionCreator = toStartActionCreator(StartAction);
+"
+`;
+
+exports[`Test the Redux code generator should match the snapshot with metadata 2`] = `
+"/*
+  You'll likely want those at the top of the file:
+
+  import { 
+    RequestAction,
+    ServerRequestActionT,
+    BaseSuccessServerResponseAction,
+    BaseErrorServerResponseAction,
+    ServerResponseAction,
+    RequestT,
+    Actions,
+    
+      BuyAction,
+      SellAction,
+      ReturnAction,
+    
+      PayloadBuy,
+      PayloadSell,
+      PayloadReturn,
+   } from \\"\\"
+
+  export { 
+    RequestAction,
+    ServerRequestActionT,
+    BaseSuccessServerResponseAction,
+    BaseErrorServerResponseAction,
+    ServerResponseAction,
+    RequestT,
+    Actions,
+    
+      BuyAction,
+      SellAction,
+      ReturnAction,
+    
+      PayloadBuy,
+      PayloadSell,
+      PayloadReturn,
+   }
+  */
+
+import { Action } from \\"redux\\";
+import { IProduct } from \\"src/Types\\";
+
+import { ActionToActionCreator } from \\"./modules/Market\\";
+
+interface ServerResponseWith<T> extends Response {
+  data: T;
+}
+interface WithMetadata<T> {
+  meta: T;
+}
+
+interface ResponseMetadata<T> {
+  meta: {
+    requestAction: {
+      contents: WithMetadata<T>;
+    };
+  };
+}
+
+export enum Actions {
+  \\"BUY\\" = \\"BUY\\",
+  \\"SELL\\" = \\"SELL\\",
+  \\"RETURN\\" = \\"RETURN\\"
+}
+
+export type PayloadBuy = {
+  id: IProduct[\\"id\\"];
+  discount: IProduct[\\"discount\\"];
+  date: IProduct[\\"date\\"];
+}[];
+export interface BuyAction {
+  type: Actions.BUY;
+  payload: PayloadBuy;
+}
+export type ResponseDataBuy = IProduct[];
+
+export type IsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY\\"
+  : never;
+
+export type IsPayloadBuy<A extends Actions> = A extends Actions.BUY
+  ? PayloadBuy
+  : never;
+
+export type IsResponseDataBuy<A extends Actions> = A extends Actions.BUY
+  ? ResponseDataBuy
+  : never;
+
+export type IsStartBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"START_BUY\\"
+  : never;
+
+export type IsDoneBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"DONE_BUY\\"
+  : never;
+
+export type IsErrorBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"ERROR_BUY\\"
+  : never;
+
+export type PayloadSell = {
+  id: IProduct[\\"id\\"];
+  discount: IProduct[\\"discount\\"];
+  date: IProduct[\\"date\\"];
+}[];
+export interface SellAction {
+  type: Actions.SELL;
+  payload: PayloadSell;
+}
+export type ResponseDataSell = IProduct[];
+
+export type IsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL\\"
+  : never;
+
+export type IsPayloadSell<A extends Actions> = A extends Actions.SELL
+  ? PayloadSell
+  : never;
+
+export type IsResponseDataSell<A extends Actions> = A extends Actions.SELL
+  ? ResponseDataSell
+  : never;
+
+export type IsStartSell<A extends Actions> = A extends Actions.SELL
+  ? \\"START_SELL\\"
+  : never;
+
+export type IsDoneSell<A extends Actions> = A extends Actions.SELL
+  ? \\"DONE_SELL\\"
+  : never;
+
+export type IsErrorSell<A extends Actions> = A extends Actions.SELL
+  ? \\"ERROR_SELL\\"
+  : never;
+
+export type PayloadReturn = {
+  id: IProduct[\\"id\\"];
+  discount: IProduct[\\"discount\\"];
+  date: IProduct[\\"date\\"];
+}[];
+export interface ReturnAction {
+  type: Actions.RETURN;
+  payload: PayloadReturn;
+}
+export type ResponseDataReturn = IProduct[];
+
+export type IsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN\\"
+  : never;
+
+export type IsPayloadReturn<A extends Actions> = A extends Actions.RETURN
+  ? PayloadReturn
+  : never;
+
+export type IsResponseDataReturn<A extends Actions> = A extends Actions.RETURN
+  ? ResponseDataReturn
+  : never;
+
+export type IsStartReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"START_RETURN\\"
+  : never;
+
+export type IsDoneReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"DONE_RETURN\\"
+  : never;
+
+export type IsErrorReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"ERROR_RETURN\\"
+  : never;
+
+export type RequestT<A extends Actions> =
+  | IsRequestBuy<A>
+  | IsRequestSell<A>
+  | IsRequestReturn<A>;
+
+export type PayloadT<A extends Actions> =
+  | IsPayloadBuy<A>
+  | IsPayloadSell<A>
+  | IsPayloadReturn<A>;
+
+export type ResponseDataT<A extends Actions> =
+  | IsResponseDataBuy<A>
+  | IsResponseDataSell<A>
+  | IsResponseDataReturn<A>;
+
+export type StartT<A extends Actions> =
+  | IsStartBuy<A>
+  | IsStartSell<A>
+  | IsStartReturn<A>;
+
+export type DoneT<A extends Actions> =
+  | IsDoneBuy<A>
+  | IsDoneSell<A>
+  | IsDoneReturn<A>;
+
+export type ErrorT<A extends Actions> =
+  | IsErrorBuy<A>
+  | IsErrorSell<A>
+  | IsErrorReturn<A>;
+
+/*
+  The stringified actionModifiers are those whose \\"type\\" is used at runtime, and
+  mapped through a concrete object.  This is where e.g.
+  RequestAction[Actions.LoadShoppingCart] is enabled, because RequestAction has
+  to be hashable and concrete.
+  */
+
+export const RequestAction: {
+  [A in Actions]: RequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY\\",
+
+  SELL: \\"REQUEST_SELL\\",
+
+  RETURN: \\"REQUEST_RETURN\\"
+};
+
+export const StartAction: {
+  [A in Actions]: StartT<A>;
+} = {
+  BUY: \\"START_BUY\\",
+
+  SELL: \\"START_SELL\\",
+
+  RETURN: \\"START_RETURN\\"
+};
+
+export const DoneAction: {
+  [A in Actions]: DoneT<A>;
+} = {
+  BUY: \\"DONE_BUY\\",
+
+  SELL: \\"DONE_SELL\\",
+
+  RETURN: \\"DONE_RETURN\\"
+};
+
+export const ErrorAction: {
+  [A in Actions]: ErrorT<A>;
+} = {
+  BUY: \\"ERROR_BUY\\",
+
+  SELL: \\"ERROR_SELL\\",
+
+  RETURN: \\"ERROR_RETURN\\"
+};
+
+export type SuccessIsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY_SUCCESS\\"
+  : never;
+
+export type SuccessIsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL_SUCCESS\\"
+  : never;
+
+export type SuccessIsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN_SUCCESS\\"
+  : never;
+
+export type SuccessRequestT<A extends Actions> =
+  | SuccessIsRequestBuy<A>
+  | SuccessIsRequestSell<A>
+  | SuccessIsRequestReturn<A>;
+
+export const SuccessRequestAction: {
+  [A in Actions]: SuccessRequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY_SUCCESS\\",
+
+  SELL: \\"REQUEST_SELL_SUCCESS\\",
+
+  RETURN: \\"REQUEST_RETURN_SUCCESS\\"
+};
+
+export type ErrorIsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY_ERROR\\"
+  : never;
+
+export type ErrorIsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL_ERROR\\"
+  : never;
+
+export type ErrorIsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN_ERROR\\"
+  : never;
+
+export type ErrorRequestT<A extends Actions> =
+  | ErrorIsRequestBuy<A>
+  | ErrorIsRequestSell<A>
+  | ErrorIsRequestReturn<A>;
+
+export const ErrorRequestAction: {
+  [A in Actions]: ErrorRequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY_ERROR\\",
+
+  SELL: \\"REQUEST_SELL_ERROR\\",
+
+  RETURN: \\"REQUEST_RETURN_ERROR\\"
+};
+
+export type AbortIsRequestBuy<A extends Actions> = A extends Actions.BUY
+  ? \\"REQUEST_BUY_ABORT\\"
+  : never;
+
+export type AbortIsRequestSell<A extends Actions> = A extends Actions.SELL
+  ? \\"REQUEST_SELL_ABORT\\"
+  : never;
+
+export type AbortIsRequestReturn<A extends Actions> = A extends Actions.RETURN
+  ? \\"REQUEST_RETURN_ABORT\\"
+  : never;
+
+export type AbortRequestT<A extends Actions> =
+  | AbortIsRequestBuy<A>
+  | AbortIsRequestSell<A>
+  | AbortIsRequestReturn<A>;
+
+export const AbortRequestAction: {
+  [A in Actions]: AbortRequestT<A>;
+} = {
+  BUY: \\"REQUEST_BUY_ABORT\\",
+
+  SELL: \\"REQUEST_SELL_ABORT\\",
+
+  RETURN: \\"REQUEST_RETURN_ABORT\\"
+};
+
+/*
+    Request types
+    Actions containing the server request's body.
+  */
+
+export type ServerRequestActionT<A extends Actions> = {
+  type: RequestT<A>;
+  request: RequestInit & { url: string };
+  contents: PayloadT<A>;
+};
+
+/*
+    Response Types
+    Action containing the API response, within its body, after a server request is completed.
+  */
+
+type ConcreteServerResponseAction<A extends Actions> = {
+  type: string;
+  response: ServerResponseWith<ResponseDataT<A>>;
+};
+
+export interface BaseSuccessServerResponseAction<A extends Actions>
+  extends ConcreteServerResponseAction<A> {}
+
+export interface BaseErrorServerResponseAction extends Action {
+  type: string;
+  error: Response | Error;
+}
+
+export type ServerResponseAction<A extends ActionsA> =
+  | BaseSuccessServerResponseAction<A>
+  | BaseErrorServerResponseAction;
+
+/*
+    Action Creators Generation for specific actionModifiers
+  */
+
+type toStartActionCreatorReturn = {
+  [A in Actions]: (
+    ...args: Parameters<ActionToActionCreator<A>>
+  ) => ReturnType<ActionToActionCreator<A>>;
+};
+
+function toStartActionCreator(
+  mapKeys: {
+    [A in Actions]: StartT<A>;
+  }
+): (
+  actionCreator: { [A in Actions]: ActionToActionCreator<A> }
+) => toStartActionCreatorReturn {
+  return function(
+    actionCreator: { [A in Actions]: ActionToActionCreator<A> }
+  ): toStartActionCreatorReturn {
+    const wrappedActionCreator = {} as any;
+    for (const [key, creatorFn] of Object.entries(actionCreator)) {
+      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+      wrappedActionCreator[key] = function(...args: any[]) {
+        return {
+          type: mapKeys[key as Actions],
+          payload: (creatorFn as any)(...args)
+        };
+      };
+    }
+    return wrappedActionCreator as toStartActionCreatorReturn;
+  };
+}
+export const GenerateStartActionCreator = toStartActionCreator(StartAction);
+"
+`;
