@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test code generation should match the snapshot 1`] = `
+"module.exports = {
+  Login: {
+    id: \\"Login\\",
+    Email: {
+      id: \\"Login.Email\\",
+      Label: {
+        id: \\"Login.Email.Label\\"
+      },
+      Input: {
+        id: \\"Login.Email.Input\\"
+      }
+    },
+    Password: {
+      id: \\"Login.Password\\",
+      Label: {
+        id: \\"Login.Password.Label\\"
+      },
+      Input: {
+        id: \\"Login.Password.Input\\"
+      }
+    }
+  }
+};
+"
+`;

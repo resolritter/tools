@@ -1,0 +1,79 @@
+{
+  "name": "res_ts",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "string-template-js": "^1.0.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "src/(.*)": "<rootDir>/src/$1"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.spec)\\.(tsx?|jsx)$",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts}"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/jest": "^24.0.23",
+    "@types/lodash": "^4.14.149",
+    "@types/prettier": "^1.19.0",
+    "@types/webpack": "^4.41.0",
+    "@typescript-eslint/parser": "^2.10.0",
+    "@typescript-eslint/typescript-estree": "^2.10.0",
+    "ajv": "^6.10.2",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "cross-var": "^1.1.0",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "find-up": "^4.1.0",
+    "jest": "^24.9.0",
+    "jsdoc-babel": "^0.5.0",
+    "prettier": "^1.19.1",
+    "source-map-support": "^0.5.16",
+    "tempy": "^0.3.0",
+    "ts-json-schema-generator": "^0.58.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.3",
+    "typescript-eslint-language-service": "^2.0.0",
+    "typescript-json-schema": "^0.41.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin": "^0.5.0",
+    "webpack-watched-glob-entries-plugin": "^2.1.5",
+    "yargs": "^15.0.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -p tsconfig.json --outDir './dist'",
+    "test:update_snapshot": "jest --updateSnapshot",
+    "test:coverage": "jest --coverage"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
