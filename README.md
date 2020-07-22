@@ -13,7 +13,7 @@ used by the CLI tool entrypoint at `bin/res_ts`.
 
 # Functionality walkthrough
 
-## Code generation for Redux
+## Code generation for Redux & Redux-Saga
 
 ### Motivation
 
