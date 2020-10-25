@@ -65,7 +65,5 @@ export function generate(conf: Configuration): string {
   }
 
   const outputIndentation = 4
-  return `
-  module.exports = ${JSON.stringify(outputSchema, null, outputIndentation)}
-  `
+  return JSON.stringify(outputSchema, null, outputIndentation)
 }
