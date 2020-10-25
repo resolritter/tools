@@ -7,7 +7,7 @@ import * as fs from "fs"
 import * as path from "path"
 
 const usageText = `
-  Usage: ts-tools --generate [generation module] <schema_path> <output_path>
+  Usage: res_ts --generate [generation module] <schema_path> <output_path>
 
   <schema_path>: The configuration for generating the module. Can be either a JS or JSON file.
   <output_path>: The path where the generated module will be saved to.
