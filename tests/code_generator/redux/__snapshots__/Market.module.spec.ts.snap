@@ -64,7 +64,7 @@ interface ResponseMetadata<T> {
 export enum Actions {
   \\"BUY\\" = \\"BUY\\",
   \\"SELL\\" = \\"SELL\\",
-  \\"RETURN\\" = \\"RETURN\\"
+  \\"RETURN\\" = \\"RETURN\\",
 }
 
 export type PayloadBuy = {
@@ -222,7 +222,7 @@ export const RequestAction: {
 
   SELL: \\"REQUEST_SELL\\",
 
-  RETURN: \\"REQUEST_RETURN\\"
+  RETURN: \\"REQUEST_RETURN\\",
 };
 
 export const StartAction: {
@@ -232,7 +232,7 @@ export const StartAction: {
 
   SELL: \\"START_SELL\\",
 
-  RETURN: \\"START_RETURN\\"
+  RETURN: \\"START_RETURN\\",
 };
 
 export const DoneAction: {
@@ -242,7 +242,7 @@ export const DoneAction: {
 
   SELL: \\"DONE_SELL\\",
 
-  RETURN: \\"DONE_RETURN\\"
+  RETURN: \\"DONE_RETURN\\",
 };
 
 export const ErrorAction: {
@@ -252,7 +252,7 @@ export const ErrorAction: {
 
   SELL: \\"ERROR_SELL\\",
 
-  RETURN: \\"ERROR_RETURN\\"
+  RETURN: \\"ERROR_RETURN\\",
 };
 
 export type SuccessIsRequestBuy<A extends Actions> = A extends Actions.BUY
@@ -279,7 +279,7 @@ export const SuccessRequestAction: {
 
   SELL: \\"REQUEST_SELL_SUCCESS\\",
 
-  RETURN: \\"REQUEST_RETURN_SUCCESS\\"
+  RETURN: \\"REQUEST_RETURN_SUCCESS\\",
 };
 
 export type ErrorIsRequestBuy<A extends Actions> = A extends Actions.BUY
@@ -306,7 +306,7 @@ export const ErrorRequestAction: {
 
   SELL: \\"REQUEST_SELL_ERROR\\",
 
-  RETURN: \\"REQUEST_RETURN_ERROR\\"
+  RETURN: \\"REQUEST_RETURN_ERROR\\",
 };
 
 export type AbortIsRequestBuy<A extends Actions> = A extends Actions.BUY
@@ -333,7 +333,7 @@ export const AbortRequestAction: {
 
   SELL: \\"REQUEST_SELL_ABORT\\",
 
-  RETURN: \\"REQUEST_RETURN_ABORT\\"
+  RETURN: \\"REQUEST_RETURN_ABORT\\",
 };
 
 /*
@@ -360,7 +360,8 @@ type ConcreteServerResponseAction<A extends Actions> = {
 export interface BaseSuccessServerResponseAction<
   A extends Actions,
   MetadataType
-> extends ConcreteServerResponseAction<A>, ResponseMetadata<MetadataType> {}
+> extends ConcreteServerResponseAction<A>,
+    ResponseMetadata<MetadataType> {}
 
 export interface BaseErrorServerResponseAction<MetadataType>
   extends Action,
@@ -390,16 +391,16 @@ function toStartActionCreator(
 ): (
   actionCreator: { [A in Actions]: ActionToActionCreator<A> }
 ) => toStartActionCreatorReturn {
-  return function(
+  return function (
     actionCreator: { [A in Actions]: ActionToActionCreator<A> }
   ): toStartActionCreatorReturn {
     const wrappedActionCreator = {} as any;
     for (const [key, creatorFn] of Object.entries(actionCreator)) {
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      wrappedActionCreator[key] = function(...args: any[]) {
+      wrappedActionCreator[key] = function (...args: any[]) {
         return {
           type: mapKeys[key as Actions],
-          payload: (creatorFn as any)(...args)
+          payload: (creatorFn as any)(...args),
         };
       };
     }
@@ -474,7 +475,7 @@ interface ResponseMetadata<T> {
 export enum Actions {
   \\"BUY\\" = \\"BUY\\",
   \\"SELL\\" = \\"SELL\\",
-  \\"RETURN\\" = \\"RETURN\\"
+  \\"RETURN\\" = \\"RETURN\\",
 }
 
 export type PayloadBuy = {
@@ -626,7 +627,7 @@ export const RequestAction: {
 
   SELL: \\"REQUEST_SELL\\",
 
-  RETURN: \\"REQUEST_RETURN\\"
+  RETURN: \\"REQUEST_RETURN\\",
 };
 
 export const StartAction: {
@@ -636,7 +637,7 @@ export const StartAction: {
 
   SELL: \\"START_SELL\\",
 
-  RETURN: \\"START_RETURN\\"
+  RETURN: \\"START_RETURN\\",
 };
 
 export const DoneAction: {
@@ -646,7 +647,7 @@ export const DoneAction: {
 
   SELL: \\"DONE_SELL\\",
 
-  RETURN: \\"DONE_RETURN\\"
+  RETURN: \\"DONE_RETURN\\",
 };
 
 export const ErrorAction: {
@@ -656,7 +657,7 @@ export const ErrorAction: {
 
   SELL: \\"ERROR_SELL\\",
 
-  RETURN: \\"ERROR_RETURN\\"
+  RETURN: \\"ERROR_RETURN\\",
 };
 
 export type SuccessIsRequestBuy<A extends Actions> = A extends Actions.BUY
@@ -683,7 +684,7 @@ export const SuccessRequestAction: {
 
   SELL: \\"REQUEST_SELL_SUCCESS\\",
 
-  RETURN: \\"REQUEST_RETURN_SUCCESS\\"
+  RETURN: \\"REQUEST_RETURN_SUCCESS\\",
 };
 
 export type ErrorIsRequestBuy<A extends Actions> = A extends Actions.BUY
@@ -710,7 +711,7 @@ export const ErrorRequestAction: {
 
   SELL: \\"REQUEST_SELL_ERROR\\",
 
-  RETURN: \\"REQUEST_RETURN_ERROR\\"
+  RETURN: \\"REQUEST_RETURN_ERROR\\",
 };
 
 export type AbortIsRequestBuy<A extends Actions> = A extends Actions.BUY
@@ -737,7 +738,7 @@ export const AbortRequestAction: {
 
   SELL: \\"REQUEST_SELL_ABORT\\",
 
-  RETURN: \\"REQUEST_RETURN_ABORT\\"
+  RETURN: \\"REQUEST_RETURN_ABORT\\",
 };
 
 /*
@@ -790,16 +791,16 @@ function toStartActionCreator(
 ): (
   actionCreator: { [A in Actions]: ActionToActionCreator<A> }
 ) => toStartActionCreatorReturn {
-  return function(
+  return function (
     actionCreator: { [A in Actions]: ActionToActionCreator<A> }
   ): toStartActionCreatorReturn {
     const wrappedActionCreator = {} as any;
     for (const [key, creatorFn] of Object.entries(actionCreator)) {
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      wrappedActionCreator[key] = function(...args: any[]) {
+      wrappedActionCreator[key] = function (...args: any[]) {
         return {
           type: mapKeys[key as Actions],
-          payload: (creatorFn as any)(...args)
+          payload: (creatorFn as any)(...args),
         };
       };
     }
