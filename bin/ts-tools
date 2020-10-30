@@ -1,4 +1,0 @@
-#!/usr/bin/env node
-
-var program = require('../dist/cli.js');
-program.run();
