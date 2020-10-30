@@ -1,3 +1,4 @@
 import { Options as PrettierOptions } from "prettier"
 
-export const prettierConfig: PrettierOptions = { parser: "typescript" }
+export const prettierConfigTs: PrettierOptions = { parser: "typescript" }
+export const prettierConfigJson: PrettierOptions = { parser: "json" }

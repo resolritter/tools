@@ -2,7 +2,7 @@ import * as fs from "fs"
 import { format } from "prettier"
 import { generate } from "../../../src/code_generator/redux/module"
 import { isValidReduxModuleConfiguration } from "../../../src/utils"
-import { prettierConfig } from "../../utils"
+import { prettierConfigTs } from "../../utils"
 import { UserProvidedConfiguration } from "../../../src/code_generator/redux/module"
 
 export enum Actions {
@@ -45,14 +45,14 @@ describe("Test the Redux code generator", () => {
           ...baseConfiguration,
           allowsMetadata: true,
         }),
-        prettierConfig,
+        prettierConfigTs,
       ),
     ).toMatchSnapshot()
   })
 
   it("should match the snapshot with metadata", () => {
     expect(
-      format(generate<Actions>(baseConfiguration), prettierConfig),
+      format(generate<Actions>(baseConfiguration), prettierConfigTs),
     ).toMatchSnapshot()
   })
 })
@@ -68,7 +68,7 @@ describe("Test if the schema validation for Configuration works on foreign objec
     const originalConsoleError = console.error
     console.error = jest.fn()
 
-    expect(function() {
+    expect(function () {
       isValidReduxModuleConfiguration({
         // this is incorrect because "Actions" are specified as an array
         actions: { Buy: "Buy" },

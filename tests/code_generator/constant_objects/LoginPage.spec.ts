@@ -6,7 +6,7 @@ import {
   Node,
 } from "../../../src/code_generator/objects/tagged_component_hierarchy"
 import { isValidTaggedComponentHierarchyConfiguration } from "../../../src/utils"
-import { prettierConfig } from "../../utils"
+import { prettierConfigJson } from "../../utils"
 
 const formFields: Node[] = [
   ["Label", []],
@@ -27,7 +27,7 @@ const baseConfiguration: Configuration = {
 describe("Test code generation", () => {
   it("should match the snapshot", () => {
     expect(
-      format(generate(baseConfiguration), prettierConfig),
+      format(generate(baseConfiguration), prettierConfigJson),
     ).toMatchSnapshot()
   })
 })
@@ -45,7 +45,7 @@ describe("Test validation through JSON Schema", () => {
     const originalConsoleError = console.error
     console.error = jest.fn()
 
-    expect(function() {
+    expect(function () {
       isValidTaggedComponentHierarchyConfiguration({
         // this is incorrect because the tree is specified as an array
         tree: { name: "Root" },
