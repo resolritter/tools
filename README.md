@@ -2,14 +2,14 @@
 
 ## Build
 
-`npm install && npm run-script build`
+`npm install && npm run build`
 
 This step will generate the files on the `dist` directory, which are, in turn,
-used by the CLI tool entrypoint at `bin/res_ts`.
+used by the CLI tool entrypoint at `bin/tools`.
 
 ## Run
 
-`bin/res_ts --help` to get usage instructions on the CLI front-end.
+`./bin/tools --help` to get usage instructions on the CLI front-end.
 
 # Functionality walkthrough
 
